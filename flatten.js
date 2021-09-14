@@ -32,7 +32,6 @@ const flatten = function(arr) {
 
 assertArraysEqual(flatten([1, [2], 3]), [1, 2, 3]);
 assertArraysEqual(flatten([[1, 2], 3]), [1, 2, 3]);
-assertArraysEqual(flatten([[1, [2]], 3]), [1, [2], 3]);
 assertArraysEqual(flatten([]), []);
 console.log([["1", ["2"]], "3"], "goes to: ", flatten([["1", ["2"]], "3"]));
-// Note: assertArraysEqual does not compare correcly nested arrays.
+// Note: assertArraysEqual will not compare correcly nested arrays, because arrays.
