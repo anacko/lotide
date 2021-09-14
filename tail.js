@@ -7,7 +7,11 @@ const assertEqual = function(actual, expected) {
 };
 
 const tail = function(arr) {
-  return arr.slice(1);
+  let finalArr = [];
+  for (let i = 1; i < arr.length; i++) {
+    finalArr.push(arr[i]);
+  }
+  return finalArr;
 };
 
 // ------
@@ -19,5 +23,3 @@ const result = tail(["Hello", "Lighthouse", "Labs"]);
 assertEqual(result.length, 2);
 assertEqual(result[0], "Lighthouse");
 assertEqual(result[1], "Labs");
-
-assertEqual(tail("Hello"), "ello"); // May not work for arrays, but works for strings
