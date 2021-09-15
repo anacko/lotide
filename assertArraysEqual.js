@@ -2,10 +2,11 @@ const assertArraysEqual = function(a, b) {
   let assertion = true;
   if (a.length !== b.length) {
     assertion = false;
-  }
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] !== b[i]) {
-      assertion = false;
+  } else { // compare only if same length
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) {
+        assertion = false;
+      }
     }
   }
   if (assertion) {
