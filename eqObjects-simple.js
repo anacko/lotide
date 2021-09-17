@@ -23,15 +23,10 @@ const eqObjects = function(object1, object2) {
     return false;
   }
   for (const key in object1) {
-    // First test about values that are arrays...
     if (Array.isArray(object1[key])) {
       if (eqArrays(object1[key], object2[key]) === false) {
         return false;
       }
-    // Not being arrays (*else*), test about objects. Recursion!
-    } else if (object1[key] instanceof Object) {
-      return eqObjects(object1[key], object2[key]);
-    // At last, test simple values.
     } else if (object1[key] !== object2[key]) {
       return false;
     }
@@ -55,9 +50,3 @@ assertEqual(eqObjects(cd, dc), true);
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
 assertEqual(eqObjects(cd, cd2), false);
-
-
-assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true) // => true
-
-assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), false) // => false
-assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }), false) // => false
