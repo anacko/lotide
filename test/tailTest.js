@@ -4,7 +4,7 @@ const tail = require('../tail');
 describe('#tail', () => {
 
   it('should not alter original array', () => {
-    const param = [1, 2, 3];
+    let param = [1, 2, 3];
     tail(param);
     expect(param).to.deep.equal(param);
   });
