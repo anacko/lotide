@@ -1,4 +1,4 @@
-const { assert, expect } = require('chai');
+const { expect } = require('chai');
 const middle = require("../middle");
 
 describe('middle', () => {
@@ -43,4 +43,4 @@ describe('middle', () => {
     expect(middle(param)).to.deep.equal(result);
   });
 
- });
+});
