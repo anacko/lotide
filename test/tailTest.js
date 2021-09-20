@@ -1,12 +1,30 @@
-const assertEqual = require("../assertEqual");
-const tail = require("../tail")
+const { assert, expect } = require('chai');
+const tail = require('../tail');
 
-// ------
-const words = ["Yo Yo", "Lighthouse", "Labs"];
-tail(words); // applying the function does not alter the object
-assertEqual(words.length, 3);
+describe('#tail', () => {
 
-const result = tail(["Hello", "Lighthouse", "Labs"]);
-assertEqual(result.length, 2);
-assertEqual(result[0], "Lighthouse");
-assertEqual(result[1], "Labs");
+  it('should not alter original array', () => { 
+    const param = [1, 2, 3];
+    tail(param);
+    expect(param).to.deep.equal(param);
+  });
+
+  it('should return [2, 3] for [1, 2, 3]', () => { 
+    const param = [1, 2, 3];
+    const result = [2, 3];
+    expect(tail(param)).to.deep.equal(result);
+  });
+
+  it('should return ["Lighthouse", "Labs"] for ["Hello", "Lighthouse", "Labs"]', () => { 
+    const param = ["Hello", "Lighthouse", "Labs"];
+    const result = ["Lighthouse", "Labs"];
+    expect(tail(param)).to.deep.equal(result);
+  });
+
+  it('should return [] for []', () => { 
+    const param = [];
+    const result = [];
+    expect(tail(param)).to.deep.equal(result);
+  });
+
+});
