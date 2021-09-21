@@ -1,16 +1,30 @@
-const assertEqual = require("../assertEqual");
-const eqArrays = require("../eqArrays");
+const { expect } = require('chai');
+const eqArrays = require('../eqArrays');
 
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true);
-assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false);
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true);
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false);
-assertEqual(eqArrays([], []), true);
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3", "4"]), false);
+describe('#eqArrays', () => {
 
-assertEqual(eqArrays([[2, 3], [4]], [[2, 3], [4]]), true);
-assertEqual(eqArrays([[2, 3], [4]], [[2, 3], [4, 5]]), false);
-assertEqual(eqArrays([[2, 3], [4]], [[2, 3], 4]), false);
+  it("should evaluate true for equal arrays", () => {
+    const param1 = [1, 2, 3];
+    const param2 = [1, 2, 3];
+    expect(eqArrays(param1, param2)).to.be.true;
+  });
 
-assertEqual(eqArrays([[2, 3], [4], 5, [[[[6], 7]]]], [[2, 3], [4], 5, [[[[6], 7]]]]), true);
-assertEqual(eqArrays([[2, 3], [4], 5, [[[[6], 7]]]], [[2, 3], [4], 5, [[[[8], 7]]]]), false);
+  it("should evaluate false for different arrays", () => {
+    const param1 = [1, 2, 3];
+    const param2 = [3, 2, 1];
+    expect(eqArrays(param1, param2)).to.be.false;
+  });
+
+  it("should allow for nested arrays", () => {
+    const param1 = [1, [[2], 3]];
+    const param2 = [1, [[2], 3]];
+    expect(eqArrays(param1, param2)).to.be.true;
+  });
+
+  it("should evaluate true for empty arrays", () => {
+    const param1 = [];
+    const param2 = [];
+    expect(eqArrays(param1, param2)).to.be.true;
+  });
+
+});
